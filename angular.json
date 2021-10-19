@@ -35,7 +35,8 @@
               "src/assets/growth-chart/growthchart.css"
             ],
             "scripts": [
-              "src/assets/growth-chart/growthchart.js"
+              "src/assets/growth-chart/growthchart.js",
+              "src/assets/growth-chart/custom-growth-chart.js"
             ]
           },
           "configurations": {
