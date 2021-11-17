@@ -17,6 +17,8 @@ import { girls_bmi_6_to_18_years } from 'src/app/utils/growth-chart-data-points/
 
 declare function display_custom_growth_chart(patient: any, el: any, chartType: any, data_points: any): any;
 
+import data_points_rcpch from '../../utils/rcpch/datapoints.json';
+
 @Component({
   selector: 'app-growth-chart',
   templateUrl: './growth-chart.component.html',
@@ -127,9 +129,9 @@ export class GrowthChartComponent implements OnInit {
 }
 
 const patientGrowth = [
-  [5.27, 7.4],
-  [6.17, 7.2],
-  [6.9, 7.3],
+  [2, 40],
+  [4, 41],
+  [6, 42],
   [8.03, 7.0],
   [9.37, 7.2],
   [12, 6.4],

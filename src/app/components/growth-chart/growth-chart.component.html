@@ -1,11 +1,11 @@
-<!-- <div id="drawHere">
+<div id="drawCustomHere">
 
-</div> -->
+</div>
 
 <!-- <button (click)="onChangeGraph()">Change Graph</button> -->
 
-<div id="drawCustomHere"></div>
+<!-- <div id="drawCustomHere"></div> -->
 
 <select (change)="onChangeGraph($event)">
     <option *ngFor="let item of chartTypes" [value]="item.value">{{ item.option }}</option>
-</select>
+</select> 

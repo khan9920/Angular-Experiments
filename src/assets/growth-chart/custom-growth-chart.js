@@ -43,12 +43,73 @@ function display_custom_growth_chart(patient, el, chartType, data_points) {
     // START: X and Y Sacles
     // Graph scale; domain and range
     var yScale = d3.scale.linear()
-        .domain(chartType == 'girls_head_circumference_for_age_0_to_24_months' ? [30, yMax] : [30, yMax])
+        .domain(getYandXScale(chartType).yScale)
         .range([height - padding, padding]);
 
     var xScale = d3.scale.linear()
-        .domain([0, xMax])
+        .domain(getYandXScale(chartType).xScale)
         .range([padding, width - padding]);
+
+    // Get Y datapoints based on chart type
+    function getYandXScale(chartType) {
+        var scaleObj = {
+            yScale,
+            xScale
+        };
+
+        switch (chartType) {
+            case 'girls_head_circumference_for_age_0_to_24_months':
+                scaleObj.yScale = [30, yMax];
+                scaleObj.xScale = [0, xMax];
+                break;
+
+            case 'girls_head_circumference_for_age_24_to_72_months':
+                scaleObj.yScale = [30.0732, yMax];
+                scaleObj.xScale = [0.0383, xMax];
+                break;
+
+            case 'girls_weight_for_age_0_to_24_months':
+                title = 'Weight G 0 to 24 months'
+                break;
+
+            case 'girls_weight_for_age_24_to_72_months':
+                title = 'Weight G 24 to 72 months'
+                break;
+
+            case 'girls_weight_for_age_4_to_18_years':
+                title = 'Weight G 4 1o 18 years'
+                break;
+
+            case 'girls_height_for_age_0_to_24_months':
+                title = 'Height G 0 to 24 months'
+                break;
+
+            case 'girls_height_for_age_24_to_72_months':
+                title = 'Height G 24 to 72 months'
+                break;
+
+            case 'girls_height_for_age_4_to_18_years':
+                title = 'Height G 4 to 18 years'
+                break;
+
+            case 'girls_bmi_0_to_24_months':
+                title = 'BMI G 0-24 months'
+                break;
+
+            case 'girls_bmi_24_to_72_months':
+                title = 'BMI G 24 to 72 months'
+                break;
+
+            case 'girls_bmi_6_to_18_years':
+                title = 'BMI G 6 to 18 years'
+                break;
+
+            default:
+                break;
+        }
+
+        return scaleObj;
+    }
     // END: X and Y Sacles
 
     // Line generating function
@@ -100,6 +161,8 @@ function display_custom_growth_chart(patient, el, chartType, data_points) {
 
     // This is being used by tooltip function
     var linesToAxis = svg.append("g");
+
+    console.log(patient);
 
     // START: Draw line based on patient data
     // Add line for the patient's growth
